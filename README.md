@@ -1,8 +1,8 @@
 # Synopsis
 
-**shimify** is a [browserify](https://github.com/substack/node-browserify) transform for shimming globals-polluting libraries.
+**moduleify** is a [browserify](https://github.com/substack/node-browserify) transform for shimming globals-polluting libraries.
 
-[![Build Status](https://travis-ci.org/pluma/shimify.png?branch=master)](https://travis-ci.org/pluma/shimify) [![NPM version](https://badge.fury.io/js/shimify.png)](http://badge.fury.io/js/shimify) [![Dependencies](https://david-dm.org/pluma/shimify.png)](https://david-dm.org/pluma/shimify)
+[![Build Status](https://travis-ci.org/pluma/moduleify.png?branch=master)](https://travis-ci.org/pluma/moduleify) [![NPM version](https://badge.fury.io/js/moduleify.png)](http://badge.fury.io/js/moduleify) [![Dependencies](https://david-dm.org/pluma/moduleify.png)](https://david-dm.org/pluma/moduleify)
 
 # Install
 
@@ -11,14 +11,14 @@
 ### With NPM
 
 ```sh
-npm install shimify
+npm install moduleify
 ```
 
 ### From source
 
 ```sh
-git clone https://github.com/pluma/shimify.git
-cd shimify
+git clone https://github.com/pluma/moduleify.git
+cd moduleify
 npm install
 make test
 ```
@@ -43,10 +43,10 @@ console.log(ng); // {awesome: true}
 
 ```javascript
 var browserify = require('browserify'),
-    shimify = require('shimify'),
+    moduleify = require('moduleify'),
     b = browserify();
 
-b.transform(shimify({
+b.transform(moduleify({
     "vendor/angular.js": "angular"
 }));
 b.bundle().pipe(require('fs').createWriteStream('bundle.js'));
@@ -54,7 +54,7 @@ b.bundle().pipe(require('fs').createWriteStream('bundle.js'));
 
 # API
 
-## shimify(rules):transform
+## moduleify(rules):transform
 
 Creates a browserify transform that will append `module.exports` statements
 to all matching files.
@@ -64,7 +64,7 @@ If one of the keys is contained in the filename, the global with the name
 matching the value the key is mapped to will be exported.
 
 ```javscript
-shimify({
+moduleify({
     "vendor/angular.js": "angular",
     "jquery": "$"
 });
@@ -78,7 +78,7 @@ In either case path separators in the filename will be converted to slashes
 before testing for matches.
 
 ```javascript
-shimify([
+moduleify([
     ["vendor/angular", "angular"],
     [/vendor\/jquery(-\d+(\.\d+)+)?\.js$/, "$"]
 ]);

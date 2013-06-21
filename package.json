@@ -1,5 +1,5 @@
 {
-  "name": "shimify",
+  "name": "moduleify",
   "author": "Alan Plum <me@pluma.io>",
   "version": "0.1.0",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "globals",
     "commonjs"
   ],
-  "main": "./dist/shimify.js",
+  "main": "./index.js",
   "dependencies": {
     "through": "2.x"
   },
@@ -24,28 +24,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pluma/shimify.git"
+    "url": "https://github.com/pluma/moduleify.git"
   },
   "scripts": {
     "test": "make test"
   },
   "engines": {
     "node": ">=0.6"
-  },
-  "testling": {
-    "files": "spec/*.js",
-    "harness": "mocha",
-    "browsers": [
-      "chrome/latest",
-      "chrome/canary",
-      "firefox/3.6..4",
-      "firefox/latest",
-      "firefox/nightly",
-      "opera/10",
-      "opera/latest",
-      "opera/next",
-      "safari/4..latest",
-      "ie/6..latest"
-    ]
   }
 }

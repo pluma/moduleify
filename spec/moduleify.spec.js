@@ -1,10 +1,10 @@
 /*global describe, it */
 var expect = require('expect.js'),
-    shimify = require('../'),
-    outputRe = /\s*module\.exports\s*=\s*([^;]+);?\s*$/;
+    moduleify = require('../'),
+    outputRe = /\s*module\.exports\s*=\s*([^;]+);?\s*/;
 
-describe('shimify({"angular.js": "angular"})', function() {
-    var transform = shimify({"angular.js": "angular"});
+describe('moduleify({"angular.js": "angular"})', function() {
+    var transform = moduleify({"angular.js": "angular"});
     it('ignores non-matching filenames', function() {
         var input = 'var foo = "blah";',
             output = null,
@@ -52,8 +52,8 @@ describe('shimify({"angular.js": "angular"})', function() {
     });
 });
 
-describe('shimify([["foo/angular.js", "angular"]])', function() {
-    var transform = shimify([["foo/angular.js", "angular"]]);
+describe('moduleify([["foo/angular.js", "angular"]])', function() {
+    var transform = moduleify([["foo/angular.js", "angular"]]);
     it('ignores non-matching filenames', function() {
         var input = 'var foo = "blah";',
             output = null,
@@ -101,8 +101,8 @@ describe('shimify([["foo/angular.js", "angular"]])', function() {
     });
 });
 
-describe('shimify([[/foo\\/angular\\.js/, "angular"]])', function() {
-    var transform = shimify([[/foo\/angular\.js/, "angular"]]);
+describe('moduleify([[/foo\\/angular\\.js/, "angular"]])', function() {
+    var transform = moduleify([[/foo\/angular\.js/, "angular"]]);
     it('ignores non-matching filenames', function() {
         var input = 'var foo = "blah";',
             output = null,

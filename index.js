@@ -1,8 +1,8 @@
-/*! shimify 0.1.0 Copyright (c) 2013 Alan Plum. MIT licensed. */
+/*! moduleify 0.1.0 Copyright (c) 2013 Alan Plum. MIT licensed. */
 var through = require('through');
 var sep = new RegExp('\\' + require('path').sep, 'g');
 
-function shimify(aliases) {
+function moduleify(aliases) {
     var rules = Array.isArray(aliases) ? aliases : Object.keys(aliases).map(function(key) {
         return [key, aliases[key]];
     });
@@ -35,4 +35,4 @@ function shimify(aliases) {
     };
 }
 
-module.exports = shimify;
+module.exports = moduleify;
