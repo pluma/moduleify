@@ -1,0 +1,51 @@
+{
+  "name": "shimify",
+  "author": "Alan Plum <me@pluma.io>",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "A browserify transform for shimming globals-polluting libraries.",
+  "keywords": [
+    "browserify",
+    "transform",
+    "modules",
+    "browser",
+    "globals",
+    "commonjs"
+  ],
+  "main": "./dist/shimify.js",
+  "dependencies": {
+    "through": "2.x"
+  },
+  "devDependencies": {
+    "mocha": "1.x",
+    "expect.js": "0.2.x",
+    "uglify-js": "2.x",
+    "jshint": "2.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pluma/shimify.git"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "engines": {
+    "node": ">=0.6"
+  },
+  "testling": {
+    "files": "spec/*.js",
+    "harness": "mocha",
+    "browsers": [
+      "chrome/latest",
+      "chrome/canary",
+      "firefox/3.6..4",
+      "firefox/latest",
+      "firefox/nightly",
+      "opera/10",
+      "opera/latest",
+      "opera/next",
+      "safari/4..latest",
+      "ie/6..latest"
+    ]
+  }
+}

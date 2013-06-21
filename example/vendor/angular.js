@@ -1,0 +1,1 @@
+angular = {awesome: true};
