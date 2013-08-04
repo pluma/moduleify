@@ -49,6 +49,7 @@ var browserify = require('browserify'),
 b.transform(moduleify({
     "vendor/angular.js": "angular"
 }));
+b.add('./app.js');
 b.bundle().pipe(require('fs').createWriteStream('bundle.js'));
 ```
 

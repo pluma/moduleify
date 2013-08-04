@@ -1,4 +1,4 @@
-/*! moduleify 0.1.0 Copyright (c) 2013 Alan Plum. MIT licensed. */
+/*! moduleify 0.2.0 Copyright (c) 2013 Alan Plum. MIT licensed. */
 var through = require('through');
 var sep = /\\/g;
 

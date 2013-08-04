@@ -154,7 +154,7 @@ describe('moduleify([[/foo\\/angular\\.js/, "angular"]])', function() {
     });
 });
 
-describe('moduleify({"foo.js": "foo"})', function() {
+describe('globals defined on "this"', function() {
     var transform = moduleify({"foo.js": "foo"});
     it('converts matching files', function() {
         var input = 'this.foo = "blah";',

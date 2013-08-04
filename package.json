@@ -1,7 +1,7 @@
 {
   "name": "moduleify",
   "author": "Alan Plum <me@pluma.io>",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "description": "A browserify transform for shimming globals-polluting libraries.",
   "keywords": [
