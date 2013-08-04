@@ -27,7 +27,7 @@ function moduleify(aliases) {
             data += buf;
         }
         function end() {
-            data += '\n}).call(window);'
+            data += '\n}).call(window);';
             data += '\nmodule.exports = window["' + globalname + '"];';
             this.queue(data);
             this.queue(null);

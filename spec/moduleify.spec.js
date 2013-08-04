@@ -1,14 +1,15 @@
 /*global describe, it */
+/*jshint evil: true */
 var expect = require('expect.js'),
     moduleify = require('../'),
     outputRe = new RegExp(
         ';\\(function\\(\\) \\{\\n' +
         '.*\\n' +
         '\\}\\)\\.call\\(window\\);\\n' +
-        'module\\.exports\\ = window\\["([^;]+)"\\];')
+        'module\\.exports\\ = window\\["([^;]+)"\\];');
 
 describe('moduleify({"angular.js": "angular"})', function() {
-    var transform = moduleify({"angular.js": "angular"});
+    var transform = moduleify({'angular.js': 'angular'});
     it('ignores non-matching filenames', function() {
         var input = 'var foo = "blah";',
             output = null,
@@ -36,7 +37,7 @@ describe('moduleify({"angular.js": "angular"})', function() {
         stream.write(input);
         stream.end();
         expect(output).to.match(outputRe);
-        expect(outputRe.exec(output)[1]).to.be('angular')
+        expect(outputRe.exec(output)[1]).to.be('angular');
         expect(timesCalled).to.be(1);
     });
     it('converts matching files on Windows', function() {
@@ -51,13 +52,13 @@ describe('moduleify({"angular.js": "angular"})', function() {
         stream.write(input);
         stream.end();
         expect(output).to.match(outputRe);
-        expect(outputRe.exec(output)[1]).to.be('angular')
+        expect(outputRe.exec(output)[1]).to.be('angular');
         expect(timesCalled).to.be(1);
     });
 });
 
 describe('moduleify([["foo/angular.js", "angular"]])', function() {
-    var transform = moduleify([["foo/angular.js", "angular"]]);
+    var transform = moduleify([['foo/angular.js', 'angular']]);
     it('ignores non-matching filenames', function() {
         var input = 'var foo = "blah";',
             output = null,
@@ -85,7 +86,7 @@ describe('moduleify([["foo/angular.js", "angular"]])', function() {
         stream.write(input);
         stream.end();
         expect(output).to.match(outputRe);
-        expect(outputRe.exec(output)[1]).to.be('angular')
+        expect(outputRe.exec(output)[1]).to.be('angular');
         expect(timesCalled).to.be(1);
     });
     it('converts matching files on Windows', function() {
@@ -100,13 +101,13 @@ describe('moduleify([["foo/angular.js", "angular"]])', function() {
         stream.write(input);
         stream.end();
         expect(output).to.match(outputRe);
-        expect(outputRe.exec(output)[1]).to.be('angular')
+        expect(outputRe.exec(output)[1]).to.be('angular');
         expect(timesCalled).to.be(1);
     });
 });
 
 describe('moduleify([[/foo\\/angular\\.js/, "angular"]])', function() {
-    var transform = moduleify([[/foo\/angular\.js/, "angular"]]);
+    var transform = moduleify([[/foo\/angular\.js/, 'angular']]);
     it('ignores non-matching filenames', function() {
         var input = 'var foo = "blah";',
             output = null,
@@ -134,7 +135,7 @@ describe('moduleify([[/foo\\/angular\\.js/, "angular"]])', function() {
         stream.write(input);
         stream.end();
         expect(output).to.match(outputRe);
-        expect(outputRe.exec(output)[1]).to.be('angular')
+        expect(outputRe.exec(output)[1]).to.be('angular');
         expect(timesCalled).to.be(1);
     });
     it('converts matching files on Windows', function() {
@@ -149,13 +150,13 @@ describe('moduleify([[/foo\\/angular\\.js/, "angular"]])', function() {
         stream.write(input);
         stream.end();
         expect(output).to.match(outputRe);
-        expect(outputRe.exec(output)[1]).to.be('angular')
+        expect(outputRe.exec(output)[1]).to.be('angular');
         expect(timesCalled).to.be(1);
     });
 });
 
 describe('globals defined on "this"', function() {
-    var transform = moduleify({"foo.js": "foo"});
+    var transform = moduleify({'foo.js': 'foo'});
     it('converts matching files', function() {
         var input = 'this.foo = "blah";',
             output = null,
@@ -168,7 +169,7 @@ describe('globals defined on "this"', function() {
         stream.write(input);
         stream.end();
         expect(output).to.match(outputRe);
-        expect(outputRe.exec(output)[1]).to.be('foo')
+        expect(outputRe.exec(output)[1]).to.be('foo');
         expect(timesCalled).to.be(1);
     });
     it('correctly sets module.exports', function() {
@@ -185,12 +186,12 @@ describe('globals defined on "this"', function() {
         stream.write(input);
         stream.end();
         try {
-          eval(output);
+            eval(output);
         } catch (e) {
-          errors++;
+            errors++;
         }
         expect(errors).to.be(0);
-        expect(window['foo']).to.be('blah');
+        expect(window.foo).to.be('blah');
         expect(module.exports).to.be('blah');
         expect(timesCalled).to.be(1);
     });
