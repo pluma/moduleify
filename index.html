@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Moduleify by pluma</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Moduleify</h1>
+        <p>A browserify transform for shimming globals-polluting libraries.</p>
+        <p class="view"><a href="https://github.com/pluma/moduleify">View the Project on GitHub <small>pluma/moduleify</small></a></p>
+        <ul>
+          <li><a href="https://github.com/pluma/moduleify/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/pluma/moduleify/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/pluma/moduleify">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="synopsis" class="anchor" href="#synopsis"><span class="octicon octicon-link"></span></a>Synopsis</h1>
+
+<p><strong>moduleify</strong> is a <a href="https://github.com/substack/node-browserify">browserify</a> transform for shimming globals-polluting libraries.</p>
+
+<p><a href="https://travis-ci.org/pluma/moduleify"><img src="https://travis-ci.org/pluma/moduleify.png?branch=master" alt="Build Status"></a> <a href="http://badge.fury.io/js/moduleify"><img src="https://badge.fury.io/js/moduleify.png" alt="NPM version"></a> <a href="https://david-dm.org/pluma/moduleify"><img src="https://david-dm.org/pluma/moduleify.png" alt="Dependencies"></a></p>
+
+<h1>
+<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h1>
+
+<h2>
+<a name="nodejs" class="anchor" href="#nodejs"><span class="octicon octicon-link"></span></a>Node.js</h2>
+
+<h3>
+<a name="with-npm" class="anchor" href="#with-npm"><span class="octicon octicon-link"></span></a>With NPM</h3>
+
+<div class="highlight"><pre>npm install moduleify
+</pre></div>
+
+<h3>
+<a name="from-source" class="anchor" href="#from-source"><span class="octicon octicon-link"></span></a>From source</h3>
+
+<div class="highlight"><pre>git clone https://github.com/pluma/moduleify.git
+<span class="nb">cd </span>moduleify
+npm install
+make <span class="nb">test</span>
+</pre></div>
+
+<h1>
+<a name="basic-usage-example" class="anchor" href="#basic-usage-example"><span class="octicon octicon-link"></span></a>Basic usage example</h1>
+
+<h2>
+<a name="examplevendorangularjs" class="anchor" href="#examplevendorangularjs"><span class="octicon octicon-link"></span></a>example/vendor/angular.js</h2>
+
+<div class="highlight"><pre><span class="nx">angular</span> <span class="o">=</span> <span class="p">{</span><span class="nx">awesome</span><span class="o">:</span> <span class="kc">true</span><span class="p">};</span>
+<span class="c1">// No CommonJS export, just a global</span>
+</pre></div>
+
+<h2>
+<a name="exampleappjs" class="anchor" href="#exampleappjs"><span class="octicon octicon-link"></span></a>example/app.js</h2>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">ng</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./vendor/angular'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ng</span><span class="p">);</span> <span class="c1">// {awesome: true}</span>
+</pre></div>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">browserify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'browserify'</span><span class="p">),</span>
+    <span class="nx">moduleify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'moduleify'</span><span class="p">),</span>
+    <span class="nx">b</span> <span class="o">=</span> <span class="nx">browserify</span><span class="p">();</span>
+
+<span class="nx">b</span><span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">moduleify</span><span class="p">({</span>
+    <span class="s2">"vendor/angular.js"</span><span class="o">:</span> <span class="s2">"angular"</span>
+<span class="p">}));</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">'./app.js'</span><span class="p">);</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">bundle</span><span class="p">().</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">).</span><span class="nx">createWriteStream</span><span class="p">(</span><span class="s1">'bundle.js'</span><span class="p">));</span>
+</pre></div>
+
+<h1>
+<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h1>
+
+<h2>
+<a name="moduleifyrulestransform" class="anchor" href="#moduleifyrulestransform"><span class="octicon octicon-link"></span></a>moduleify(rules):transform</h2>
+
+<p>Creates a browserify transform that will append <code>module.exports</code> statements
+to all matching files.</p>
+
+<p>If <code>rules</code> is an object, each filename will be checked against its keys.
+If one of the keys is contained in the filename, the global with the name
+matching the value the key is mapped to will be exported.</p>
+
+<pre lang="javscript"><code>moduleify({
+    "vendor/angular.js": "angular",
+    "jquery": "$"
+});
+</code></pre>
+
+<p>Alternatively <code>rules</code> can be an array containing tuples of paths and names.
+Each filename will be checked against each path. The path can either be
+a string to be found in the filename or a regular expression to test against.</p>
+
+<p>In either case path separators in the filename will be converted to slashes
+before testing for matches.</p>
+
+<div class="highlight"><pre><span class="nx">moduleify</span><span class="p">([</span>
+    <span class="p">[</span><span class="s2">"vendor/angular"</span><span class="p">,</span> <span class="s2">"angular"</span><span class="p">],</span>
+    <span class="p">[</span><span class="sr">/vendor\/jquery(-\d+(\.\d+)+)?\.js$/</span><span class="p">,</span> <span class="s2">"$"</span><span class="p">]</span>
+<span class="p">]);</span>
+</pre></div>
+
+<h1>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
+
+<p>The MIT/Expat license.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/pluma">pluma</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
