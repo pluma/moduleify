@@ -22,12 +22,13 @@ function moduleify(aliases) {
         if (!globalname) {
             return through();
         }
-        var data = '';
+        var data = ';(function() {\n';
         function write(buf) {
             data += buf;
         }
         function end() {
-            data += '\nmodule.exports = ' + globalname + ';';
+            data += '\n}).call(window);'
+            data += '\nmodule.exports = window["' + globalname + '"];';
             this.queue(data);
             this.queue(null);
         }
