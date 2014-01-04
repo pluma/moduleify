@@ -1,9 +1,12 @@
 {
   "name": "moduleify",
   "author": "Alan Plum <me@pluma.io>",
-  "version": "0.2.0",
-  "license": "MIT",
+  "version": "0.2.1",
   "description": "A browserify transform for shimming globals-polluting libraries.",
+  "licenses": {
+    "type": "UNLICENSE",
+    "url": "https://github.com/pluma/moduleify/blob/master/UNLICENSE"
+  },
   "keywords": [
     "browserify",
     "transform",
@@ -14,13 +17,13 @@
   ],
   "main": "./index.js",
   "dependencies": {
-    "through": "2.x"
+    "through": "~2.3"
   },
   "devDependencies": {
-    "mocha": "1.x",
-    "expect.js": "0.2.x",
-    "uglify-js": "2.x",
-    "jshint": "2.x"
+    "mocha": "~1.16",
+    "expect.js": "~0.2",
+    "uglify-js": "~2.4",
+    "jshint": "~2.4"
   },
   "repository": {
     "type": "git",

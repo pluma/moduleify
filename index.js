@@ -1,4 +1,4 @@
-/*! moduleify 0.2.0 Copyright (c) 2013 Alan Plum. MIT licensed. */
+/*! moduleify 0.2.1 Original author Alan Plum <me@pluma.io>. Released into the Public Domain under the UNLICENSE. @preserve */
 var through = require('through');
 var sep = /\\/g;
 
