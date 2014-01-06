@@ -1,32 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Moduleify by pluma</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="moduleify : shims globals-polluting libraries" />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <title>moduleify</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Moduleify</h1>
-        <p>A browserify transform for shimming globals-polluting libraries.</p>
-        <p class="view"><a href="https://github.com/pluma/moduleify">View the Project on GitHub <small>pluma/moduleify</small></a></p>
-        <ul>
-          <li><a href="https://github.com/pluma/moduleify/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/pluma/moduleify/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/pluma/moduleify">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/pluma/moduleify">View on GitHub</a>
+
+          <h1 id="project_title">moduleify</h1>
+          <h2 id="project_tagline">shims globals-polluting libraries</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/pluma/moduleify/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/pluma/moduleify/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <h1>
 <a name="synopsis" class="anchor" href="#synopsis"><span class="octicon octicon-link"></span></a>Synopsis</h1>
 
@@ -43,13 +47,13 @@
 <h3>
 <a name="with-npm" class="anchor" href="#with-npm"><span class="octicon octicon-link"></span></a>With NPM</h3>
 
-<div class="highlight"><pre>npm install moduleify
+<div class="highlight highlight-sh"><pre>npm install moduleify
 </pre></div>
 
 <h3>
 <a name="from-source" class="anchor" href="#from-source"><span class="octicon octicon-link"></span></a>From source</h3>
 
-<div class="highlight"><pre>git clone https://github.com/pluma/moduleify.git
+<div class="highlight highlight-sh"><pre>git clone https://github.com/pluma/moduleify.git
 <span class="nb">cd </span>moduleify
 npm install
 make <span class="nb">test</span>
@@ -61,21 +65,21 @@ make <span class="nb">test</span>
 <h2>
 <a name="examplevendorangularjs" class="anchor" href="#examplevendorangularjs"><span class="octicon octicon-link"></span></a>example/vendor/angular.js</h2>
 
-<div class="highlight"><pre><span class="nx">angular</span> <span class="o">=</span> <span class="p">{</span><span class="nx">awesome</span><span class="o">:</span> <span class="kc">true</span><span class="p">};</span>
+<div class="highlight highlight-javascript"><pre><span class="nx">angular</span> <span class="o">=</span> <span class="p">{</span><span class="nx">awesome</span><span class="o">:</span> <span class="kc">true</span><span class="p">};</span>
 <span class="c1">// No CommonJS export, just a global</span>
 </pre></div>
 
 <h2>
 <a name="exampleappjs" class="anchor" href="#exampleappjs"><span class="octicon octicon-link"></span></a>example/app.js</h2>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">ng</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./vendor/angular'</span><span class="p">);</span>
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">ng</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./vendor/angular'</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ng</span><span class="p">);</span> <span class="c1">// {awesome: true}</span>
 </pre></div>
 
 <h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">browserify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'browserify'</span><span class="p">),</span>
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">browserify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'browserify'</span><span class="p">),</span>
     <span class="nx">moduleify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'moduleify'</span><span class="p">),</span>
     <span class="nx">b</span> <span class="o">=</span> <span class="nx">browserify</span><span class="p">();</span>
 
@@ -112,23 +116,28 @@ a string to be found in the filename or a regular expression to test against.</p
 <p>In either case path separators in the filename will be converted to slashes
 before testing for matches.</p>
 
-<div class="highlight"><pre><span class="nx">moduleify</span><span class="p">([</span>
+<div class="highlight highlight-javascript"><pre><span class="nx">moduleify</span><span class="p">([</span>
     <span class="p">[</span><span class="s2">"vendor/angular"</span><span class="p">,</span> <span class="s2">"angular"</span><span class="p">],</span>
     <span class="p">[</span><span class="sr">/vendor\/jquery(-\d+(\.\d+)+)?\.js$/</span><span class="p">,</span> <span class="s2">"$"</span><span class="p">]</span>
 <span class="p">]);</span>
 </pre></div>
 
 <h1>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
+<a name="unlicense" class="anchor" href="#unlicense"><span class="octicon octicon-link"></span></a>Unlicense</h1>
 
-<p>The MIT/Expat license.</p>
+<p>This is free and unencumbered public domain software. For more information, see <a href="http://unlicense.org/">http://unlicense.org/</a> or the accompanying <a href="https://github.com/pluma/moduleify/blob/master/UNLICENSE">UNLICENSE</a> file.</p>
       </section>
     </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/pluma">pluma</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">moduleify maintained by <a href="https://github.com/pluma">pluma</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
     
+
   </body>
 </html>
