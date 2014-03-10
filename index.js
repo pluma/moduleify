@@ -1,4 +1,4 @@
-/*! moduleify 0.2.1 Original author Alan Plum <me@pluma.io>. Released into the Public Domain under the UNLICENSE. @preserve */
+/*! moduleify 0.2.2 Original author Alan Plum <me@pluma.io>. Released into the Public Domain under the UNLICENSE. @preserve */
 var through = require('through');
 var sep = /\\/g;
 
